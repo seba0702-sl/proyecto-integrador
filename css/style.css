@@ -1,0 +1,493 @@
+html, body {
+    background-image: url('/imagenes/fondo-pagina.png');
+    background-size: cover;
+    /* cubre toda la pantalla */
+    background-position: center;
+    background-repeat: no-repeat;
+    /* esto hace que la imagen no se repita */
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+    .contenido{
+    flex:1;}
+
+
+.patrick-hand-regular {
+    font-family: "Patrick Hand", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Estilo para el header fondo oscuro, texto en blanco, relleno interno, borde inferior, espacio margen inferoir*/
+.encabezado-index {
+    background-color: #be3434;
+    color: white;
+    padding: 20px;
+    border-bottom: 4px solid #444;
+    margin-bottom: 20px;
+    text-align: center;
+    /*centra la imagen/texto*/
+    max-width: 100%;
+    /*coloca la imagen de header en su maxima*/
+    height: auto;
+}
+/*aplico*/
+#volver-inicio {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100px; /* ajusto altura */
+}
+
+#volver-inicio img {
+    width: 50px; 
+    height: 50px; 
+    cursor: pointer; /* Cambia el cursor para que parezca un botón clicable */
+    border-radius: 50%; /* bordes redondeados*/
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Efecto de Sombra para darle efecto de botón */
+    transition: transform 0.2s; /* Efecto de transformación al pasar el mouse */
+}
+
+#volver-inicio img:hover {
+    transform: scale(1.1); /* Aumenta un poco el tamaño cuando el mouse está sobre la imagen */
+}
+
+
+
+/* Estilo para el main del index */
+.main-index {
+    padding: 20px;
+    /* Espacio interno */
+    margin: 0 auto;
+    /* Centra el contenido en pantallas grandes */
+    max-width: 1200px;
+    /* Ancho máximo del main */
+    background-color: #f9f9f9;
+    /* Fondo claro */
+    border: 2px solid #ccc;
+    /* Borde alrededor del main */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra para dar profundidad */
+}
+
+
+/* Estilo para el footer general de las paginas */
+footer {
+    background-color: #333;
+    /* Fondo oscuro */
+    color: white;
+    padding: 15px;
+    margin-top: 20px;
+    /* Espacio que me deja arriba del footer */
+    text-align: center;
+    /* asi puedo centrar el texto */
+    border-top: 4px solid #444;
+    /* grosor del borde superior */
+}
+
+
+
+.nav-contenedor ul {
+    list-style-type: none;
+    /* elimino los puntos de la lista porque quisiera colocar icono al costado de cada elemento */
+    margin: 0;
+    /* con esto elimino márgenes predeterminados */
+    padding: 0;
+    /* con esto estoy eliminando padding predeterminado que es el espacio entre textos */
+    display: flex;
+    /* este flexbox me coloca los elementos en una fila */
+    justify-content: space-around;
+    /* me da un espacio uniforme de los elementos de la lista */
+}
+
+.nav-contenedor ul li {
+    margin: 0 10px;
+    /* me da espacio entre los elementos en caso de necesitarlo */
+}
+
+.nav-contenedor li{
+    transition: background-color 0.3s ease;
+}
+.nav-contenedor ul li a {
+    text-decoration: none;
+    color: #f1efef;
+    /* Es el color del texto*/
+    padding: 10px;
+    margin-bottom: 20px;
+    /* Espacio debajo de la barra de navegación */
+}
+
+.nav-contenedor {
+    font-family: 'Patrick Hand', sans-serif;
+    /* Le cambié la fuente al contenedor de navegación */
+    font-size: 25px;
+    background-color: rgb(37, 43, 49);
+}
+
+/* Cambiar el color cuando el ratón se posiciona sobre el elemento */
+.nav-contenedor li:hover {
+    transform: translateY(-2px);/*se traslada cuando posiciono el mouse*/
+        }
+
+#h2-section {
+    font-size: 30px;
+    color: white;
+}
+
+#h2-index {
+    color: azure;
+    font-size: 30px;
+    font-style: normal;
+    text-align: center;
+    background-color: red;
+    border: 3px solid #3472ac;
+    border-radius: 5px;
+    padding: 20px;
+    max-width: auto;
+}
+
+#parrafo-1 {
+    color: azure;
+    font-size: 20;
+    font-style: bold;
+    text-align: justify;
+}
+
+/* Estilo para la sección1 */
+.section1 {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    max-width: auto;
+    /* Ancho máximo automatico se ajusta a la imagen */
+    margin: 20px auto;
+    /* Centra la sección horizontalmente */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Le da Sombra la imagen */
+}
+
+/* Estilo específico para que la imagen quede encaudrada dentro de la sección */
+.section1 img {
+    display: block;
+    /* Hace que la imagen se trate como bloque y respete márgenes */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+    /* Centra la imagen dentro del contenedor */
+    border: 2px solid #333;
+    /* Borde alrededor de la imagen */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    padding: 5px;
+    /* Espacio alrededor de la imagen antes del borde */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    /* Sombra alrededor de la imagen */
+}
+
+.video-index {
+    background-color: rgb(41, 65, 94);
+    border: 1px solid #030303;
+    border-radius: 5px;
+    padding: 20px;
+    max-width: auto;
+    /* Ancho máximo automatico se ajusta a la imagen */
+    margin: 20px auto;
+    /* Centra la sección horizontalmente */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Le da Sombra la imagen */
+}
+
+.video-index video{
+    display:inline;
+    /* Hace que la imagen se trate como bloque y respete márgenes */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+    /* Centra la imagen dentro del contenedor */
+    border: 2px solid #f10707;
+    /* Borde alrededor de la imagen */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    padding: 5px;
+    /* Espacio alrededor de la imagen antes del borde */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    /* Sombra alrededor de la imagen */
+}
+
+/* Aca comienza el estilo para las tarjetas de la secion tajetas de producto*/
+.tarjetas {
+    display: flex;
+    /* Con esto estoy Habilitando Flexbox */
+    flex-wrap: wrap;
+    /* Me permite que las tarjetas se envuelvan en varias filas si es necesario */
+    justify-content: space-evenly;
+    /* Distribuye el espacio que hay entre las tarjetas */
+    align-items: flex-start;
+    /* me las Alinea en la parte superior */
+    margin: 20px 0;
+    /* me agrega margen arriba y abajo de la sección */
+}
+
+/* Estilo para cada tarjeta */
+.tarjeta {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    /* Espaciado interno */
+    width: calc(25% - 20px);
+    /* Ancho del 25% menos márgenes */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Sombra*/
+    margin: 10px;
+    /*Me da espacio entre las tarjetas */
+    border: 1px solid #ddd;
+    /* Borde alrededor de cada sección */
+}
+
+/* Estilo para las imágenes dentro de las tarjetas */
+.tarjeta img {
+    max-width: 100%;
+    /*no excede el ancho maximo de la tarjeta */
+    height: auto;
+    /* Nos Mantiene la proporción de la imagen */
+}
+
+/* me aseguro de que las tarjetas se adapten en pantallas pequeñas */
+@media (max-width: 768px) {
+    .tarjeta {
+        width: calc(50% - 20px);
+        /* Dos tarjetas por fila en pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 480px) {
+    .tarjeta {
+        width: calc(100% - 20px);
+        /* Una tarjeta por fila en pantallas muy pequeñas */
+    }
+}
+
+/*aca finalizo los estilos de las tarjetas de producto*/
+
+/* Estilo general para todos los elementos */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo general */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Aca comienzo el Estilo de la sección que contiene las tarjetas de reseñas con Grid*/
+.main-resenas {
+    padding: 20px;
+}
+
+.tarjetas-resena {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.tarjeta-r {
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+}
+
+.tarjeta-r:hover {
+    transform: translateY(-5px);
+}
+
+.tarjeta-r h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.tarjeta-r p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Para pantallas de dispositivos mobiles chicos*/
+@media (max-width: 600px) {
+    .tarjetas-resena {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/*aca finalizo el estilo de la seccion reseñas*/
+
+/* Comienzo de estilos para paginacontacto */
+.contacto-responsive {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+main {
+    padding: 20px;
+}
+
+/* estilos sobre elementos del Formulario */
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form fieldset {
+    border: none;
+    padding: 0;
+}
+
+form legend {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+form label {
+    display: block;
+    /* Hace que la imagen se trate como bloque y respete márgenes */
+    margin: 10px 0 5px;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Query para pantallas más pequeñas */
+@media (max-width: 768px) {
+
+    /* Ajusto las tarjetas para que se apilen en pantallas pequeñas */
+    .tarjetas-resena {
+        grid-template-columns: 1fr;
+    }
+
+    /* Ajusto padding y tamaños del formulario para pantallas pequeñas */
+    form {
+        padding: 15px;
+    }
+
+    form input,
+    form textarea {
+        padding: 8px;
+    }
+
+    form button {
+        width: 100%;
+        padding: 12px;
+    }
+
+    form legend {
+        font-size: 1.2rem;
+    }
+
+    form label {
+        font-size: 1rem;
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+.productos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1rem;
+    background-color: #f9f9f9;
+}
+
+.card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.card h2 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.card a {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
