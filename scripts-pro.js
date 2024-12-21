@@ -1,4 +1,4 @@
-// Array de productos
+// Simulamos los productos de la API
 const productos = [
     { id: 1, nombre: "Producto 1", imagen: "/imagenes/producto1.png", descripcion: "Este es el Producto 1." },
     { id: 2, nombre: "Producto 2", imagen: "/imagenes/producto2.png", descripcion: "Este es el Producto 2." },
@@ -6,85 +6,131 @@ const productos = [
     { id: 4, nombre: "Producto 4", imagen: "/imagenes/producto4.png", descripcion: "Este es el Producto 4." }
 ];
 
-// Función para mostrar productos en la página
+// Cargar productos desde el "API" (en este caso, desde el array)
 function mostrarProductos(productos) {
-    const contenedor = document.getElementById("tarjetas-contenedor"); // Contenedor de las tarjetas
+    const contenedor = document.getElementById("tarjetas-contenedor");
     contenedor.innerHTML = ""; // Limpiar contenido previo
 
-    // Crear el HTML dinámico
     productos.forEach(producto => {
         const tarjetaHTML = `
             <div class="tarjeta" data-id="${producto.id}">
                 <h2>${producto.nombre}</h2>
                 <img src="${producto.imagen}" alt="${producto.nombre}">
                 <p>${producto.descripcion}</p>
-                <a href="#" class="ver-mas" data-id="${producto.id}">Ver más</a>
+                <button class="agregar-al-carrito" data-id="${producto.id}">Añadir al carrito</button>
             </div>
         `;
-
-        // Agregar la tarjeta al contenedor
         contenedor.innerHTML += tarjetaHTML;
     });
 
-    // Agregar evento a los botones "Ver más"
-    const botonesVerMas = document.querySelectorAll(".ver-mas");
-    botonesVerMas.forEach(boton => {
-        boton.addEventListener("click", event => {
+    // Añadir evento de agregar al carrito
+    const botonesAgregar = document.querySelectorAll(".agregar-al-carrito");
+    botonesAgregar.forEach(boton => {
+        boton.addEventListener("click", (event) => {
             event.preventDefault();
             const idProducto = boton.getAttribute("data-id");
-            const productoSeleccionado = productos.find(p => p.id == idProducto);
-            alert(`Descripción: ${productoSeleccionado.descripcion}`);
+            agregarAlCarrito(idProducto);
         });
     });
 }
 
-// Llamar a la función para generar las tarjetas
-mostrarProductos(productos);
+// Carrito de compras (usaremos localStorage para persistir entre sesiones)
+function obtenerCarrito() {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    return carrito;
+}
 
-// Función para obtener los productos desde la API
-async function obtenerProductos() {
-    try {
-        const response = await fetch('https://api.ejemplo.com/productos'); // Reemplaza con la URL de tu API
-        const productos = await response.json(); // Convertir la respuesta en formato JSON
+// Guardar carrito en localStorage
+function guardarCarrito(carrito) {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+}
 
-        // Llamar a la función para mostrar los productos
-        mostrarProductos(productos);
-    } catch (error) {
-        console.error('Error al obtener los productos:', error);
+// Función para agregar un producto al carrito
+function agregarAlCarrito(idProducto) {
+    let carrito = obtenerCarrito();
+
+    // Verificar si el producto ya está en el carrito
+    const productoEnCarrito = carrito.find(item => item.id === parseInt(idProducto));
+
+    if (productoEnCarrito) {
+        // Si ya está, incrementamos la cantidad
+        productoEnCarrito.cantidad += 1;
+    } else {
+        // Si no está, lo agregamos al carrito con cantidad 1
+        const producto = productos.find(p => p.id == idProducto);
+        carrito.push({ ...producto, cantidad: 1 });
+    }
+
+    // Guardar el carrito actualizado
+    guardarCarrito(carrito);
+    mostrarCarrito();
+}
+
+// Mostrar los productos del carrito
+function mostrarCarrito() {
+    const carrito = obtenerCarrito();
+    const contenedorCarrito = document.getElementById("carrito");
+    contenedorCarrito.innerHTML = ""; // Limpiar el carrito
+
+    carrito.forEach(producto => {
+        const productoHTML = `
+            <div class="producto-carrito" data-id="${producto.id}">
+                <h3>${producto.nombre}</h3>
+                <img src="${producto.imagen}" alt="${producto.nombre}">
+                <p>${producto.descripcion}</p>
+                <label for="cantidad-${producto.id}">Cantidad:</label>
+                <input type="number" id="cantidad-${producto.id}" value="${producto.cantidad}" min="1" class="cantidad">
+                <button class="eliminar" data-id="${producto.id}">Eliminar</button>
+            </div>
+        `;
+        contenedorCarrito.innerHTML += productoHTML;
+    });
+
+    // Agregar eventos para cambiar cantidad y eliminar productos
+    const botonesEliminar = document.querySelectorAll(".eliminar");
+    botonesEliminar.forEach(boton => {
+        boton.addEventListener("click", (event) => {
+            const idProducto = boton.getAttribute("data-id");
+            eliminarDelCarrito(idProducto);
+        });
+    });
+
+    // Evento para editar cantidad
+    const inputsCantidad = document.querySelectorAll(".cantidad");
+    inputsCantidad.forEach(input => {
+        input.addEventListener("change", (event) => {
+            const idProducto = input.getAttribute("id").split('-')[1];
+            const nuevaCantidad = parseInt(input.value);
+            editarCantidad(idProducto, nuevaCantidad);
+        });
+    });
+}
+
+// Función para editar la cantidad de un producto
+function editarCantidad(idProducto, cantidad) {
+    let carrito = obtenerCarrito();
+    const producto = carrito.find(p => p.id == idProducto);
+    if (producto) {
+        producto.cantidad = cantidad;
+        guardarCarrito(carrito);
+        mostrarCarrito();
     }
 }
 
-// Función para mostrar productos en la página
-function mostrarProductos(productos) {
-    const contenedor = document.getElementById("tarjetas-contenedor"); // Contenedor de las tarjetas
-    contenedor.innerHTML = ""; // Limpiar contenido previo
-
-    // Crear el HTML dinámico
-    productos.forEach(producto => {
-        const tarjetaHTML = `
-            <div class="tarjeta" data-id="${producto.id}">
-                <h2>${producto.nombre}</h2>
-                <img src="${producto.imagen}" alt="${producto.nombre}">
-                <p>${producto.descripcion}</p>
-                <a href="#" class="ver-mas" data-id="${producto.id}">Ver más</a>
-            </div>
-        `;
-
-        // Agregar la tarjeta al contenedor
-        contenedor.innerHTML += tarjetaHTML;
-    });
-
-    // Agregar evento a los botones "Ver más"
-    const botonesVerMas = document.querySelectorAll(".ver-mas");
-    botonesVerMas.forEach(boton => {
-        boton.addEventListener("click", event => {
-            event.preventDefault();
-            const idProducto = boton.getAttribute("data-id");
-            const productoSeleccionado = productos.find(p => p.id == idProducto);
-            alert(`Descripción: ${productoSeleccionado.descripcion}`);
-        });
-    });
+// Función para eliminar un producto del carrito
+function eliminarDelCarrito(idProducto) {
+    let carrito = obtenerCarrito();
+    carrito = carrito.filter(p => p.id != idProducto);
+    guardarCarrito(carrito);
+    mostrarCarrito();
 }
 
-// Llamar a la función para obtener los productos desde la API
-obtenerProductos();
+// Vaciar carrito
+document.getElementById("vaciar-carrito").addEventListener("click", () => {
+    localStorage.removeItem("carrito");
+    mostrarCarrito();
+});
+
+// Mostrar productos al cargar la página
+mostrarProductos(productos);
+mostrarCarrito();
